@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink,Link } from 'react-router-dom'
 
 function Header() {
   return (
@@ -9,14 +10,14 @@ function Header() {
               <div className='flex justify-around bg-neutral-600 p-4 text-white font-bold text-xl items-center '>
                   <div >
                       <ul className='flex gap-28 '>
-                          <li className='cursor-pointer'>Home</li>
-                          <li className='cursor-pointer'>About Us</li>
-                          <li className='cursor-pointer'>Contact Us</li>
+                         <NavLink to="home" className={({isActive})=>`cursor-pointer ${isActive ? "text-black":"text-white"}`}><li >Home</li></NavLink>
+                         <NavLink to="about" className={({isActive})=>`cursor-pointer ${isActive ? "text-black":"text-white"}`}><li >About Us</li></NavLink> 
+                         <NavLink to="contact" className={({isActive})=>`cursor-pointer ${isActive ? "text-black":"text-white"}`}><li >Contact Us</li></NavLink> 
                       </ul>
                   </div>
                   <div>
                       <ul className='flex gap-10'>
-                          <li><button className='bg-sky-800 p-2 rounded-lg w-28 hover:scale-110 cursor-pointer'>Sign Up</button></li>
+                          <Link to="signup"><li><button className='bg-sky-800 p-2 rounded-lg w-28 hover:scale-110 cursor-pointer'>Sign Up</button></li></Link>
                           <li><button className='bg-red-600 p-2 rounded-lg w-28 hover:scale-110 cursor-pointer'>Login</button></li>
                       </ul>
 
