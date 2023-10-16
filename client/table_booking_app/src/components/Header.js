@@ -18,7 +18,7 @@ function Header() {
                   <div>
                       <ul className='flex gap-10'>
                           <Link to="signup"><li><button className='bg-sky-800 p-2 rounded-lg w-28 hover:scale-110 cursor-pointer'>Sign Up</button></li></Link>
-                          <li><button className='bg-red-600 p-2 rounded-lg w-28 hover:scale-110 cursor-pointer'>Login</button></li>
+                          <Link to="login"><li><button className='bg-red-600 p-2 rounded-lg w-28 hover:scale-110 cursor-pointer'>Login</button></li></Link>
                       </ul>
 
                   </div>
