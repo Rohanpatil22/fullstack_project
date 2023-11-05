@@ -23,7 +23,8 @@ function Header() {
 
                   </div>
                   <div>
-                      <button className='bg-orange-600  p-2 rounded-lg w-32 hover:scale-110 cursor-pointer'>Book Table</button>
+                        <Link to="booktable"><button className='bg-orange-600  p-2 rounded-lg w-32 hover:scale-110 cursor-pointer'>Book Table</button></Link>
+                      
                   </div>
               </div>
     </nav>

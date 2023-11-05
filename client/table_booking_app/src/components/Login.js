@@ -12,12 +12,12 @@ function Login() {
                   
                 <tr>
                     <td className='p-3'><label htmlFor='email_inp' className='font-medium'>Email Id</label></td> 
-                    <td className='p-3'><input className='rounded-xl p-1 w-[400px] text-black' type="text" id="email_inp" /></td>
+                    <td className='p-3'><input className='rounded-xl p-1 w-[400px] text-black' type="text" id="email_inp" autoFocus /></td>
                 </tr>
 
                 <tr >
                     <td className='p-3'><label htmlFor='pass_inp' className='font-medium'>Password</label></td>
-                    <td className='p-3'><input className='rounded-xl p-1 w-[400px] text-black' type="text" id="pass_inp" autoFocus /></td>
+                    <td className='p-3'><input className='rounded-xl p-1 w-[400px] text-black' type="text" id="pass_inp"  /></td>
                 </tr>
 
                 <tr>
