@@ -1,6 +1,7 @@
 import express, { json } from "express";
 import dotenv from "dotenv";
 import router from "./routes/routes.js";
+import cookieParser from "cookie-parser";
 
 dotenv.config();
 
@@ -8,6 +9,8 @@ dotenv.config();
 const app=express();
 
 app.use(express.json());
+
+app.use(cookieParser());
 const PORT=process.env.PORT || 3000;
 
 app.get("/",(req,res)=>{

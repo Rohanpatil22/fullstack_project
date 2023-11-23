@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 import User from "../models/userSchema.js";
 import bcrypt from "bcryptjs"
 import { json } from "express";
+import jwt from "jsonwebtoken";
+
 
 
 export const CreateUser= async(req,res)=>{
@@ -32,10 +34,67 @@ export const CreateUser= async(req,res)=>{
     {
        throw Error("User not cretated.Something went wrong.");
     }
+    
+    const token=jwt.sign(
+        
+        {id:newUser._id,email},
+        process.env.SECRET_KEY
 
-    res.json({
+        );
+
+    const options={
+
+        expires:new Date(Date.now()+ 60*1000),
+        httpOnly:true
+    }
+    res.status(200).cookie("jwttoken",token,options).json({
 
         newUser,
         msg:"User created Successfully."
     })
+}
+
+export const checkUser=async(req,res)=>{
+
+    const{email,password}=req.body;
+
+    if(!(email && password))
+    {
+        return res.status(400).json({
+
+            msg:"All fields are mandatory."
+        })
+    }
+
+    const RegisterUser= await User.findOne({email});
+
+    if(RegisterUser && await bcrypt.compare(password,RegisterUser.password))
+    {
+        const token=jwt.sign(
+            {id:RegisterUser._id,email},
+            process.env.SECRET_KEY
+            
+        )
+
+        const options={
+            expires:new Date(Date.now()+ 60*1000),
+            httpOnly:true
+        }
+
+        res.status(200).cookie("jwttoken",token,options).json({
+
+            Success:true,
+            token,
+            msg:"User Authentication Successful"
+        })
+    }
+
+    else{
+
+        res.status(400).json({
+
+            Success:false,
+            msg:"Something went wrong"
+        })
+    }
 }
