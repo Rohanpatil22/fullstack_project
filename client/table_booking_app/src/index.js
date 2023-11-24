@@ -12,6 +12,7 @@ import Login from './components/Login';
 import Table from './components/Table';
 
 
+
 const route=createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<App/>}>
     <Route path="" element={<Home/>}/>
