@@ -103,9 +103,12 @@ export const ShowData= async(req,res)=>{
 
     console.log(req.cookies.jwttoken);
 
-    res.status(200).json({
+   
+        res.status(200).json({
 
-        Success:true,
-        msg:"This is data"
-    })
+            success:true,
+            msg:"This is data"
+        })
+    
+   
 }
