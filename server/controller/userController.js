@@ -77,7 +77,7 @@ export const checkUser=async(req,res)=>{
         )
 
         const options={
-            expires:new Date(Date.now()+ 60*1000),
+            expires:new Date(Date.now()+ 10*60*1000),
             httpOnly:true
         }
 

@@ -8,7 +8,7 @@ import BookingData from './BookingData.js';
 function Table() {
     
     const [userAUth,setUserAuth]=useState(false);
-    const [clickCheck,setClickCheck]=useState(true);
+    const [clickCheck,setClickCheck]=useState(false);
     
     const PopupStyle={
 
@@ -39,7 +39,11 @@ function Table() {
         });
         
     })();
-     
+    
+    const setCheck=()=>{
+
+        setClickCheck(!clickCheck);
+    }
 
     let tableName=["T1","T2","T3","T4","T5","T6","T7","T8","T9","T10"];
     if(userAUth)
@@ -50,7 +54,7 @@ function Table() {
             <div className='grid grid-cols-5 gap-20 m-20 '  style={clickCheck ? {height:"800px",opacity:"0.3"} :{height:"800px"}}>
                  {
                      tableName.map((item,index)=>(
-                         <div key={index} className='w-60 h-40 border-2 border-black font-bold text-3xl p-4 hover:bg-zinc-500 rounded-xl'>{item}</div>
+                         <div key={index} className='w-60 h-40 border-2 border-black font-bold text-3xl p-4 hover:bg-zinc-500 rounded-xl' onClick={setCheck}>{item}</div>
                      ))
                  }
 
@@ -61,7 +65,7 @@ function Table() {
             </div>
 
             <div style={PopupStyle}>
-                 <BookingData/>
+                 <BookingData setFun={setCheck}/>
              </div>
             
           
