@@ -3,12 +3,14 @@ import bgImg from '../images/bg_img_2.jpg'
 import axios from 'axios';
 import {useForm} from 'react-hook-form';
 import{toast,Toaster} from 'react-hot-toast'
+import {useNavigate} from 'react-router-dom'
 
 function Login() {
 
     const [loginData,setloginData]=useState({email:"",password:""});
     const{register,handleSubmit,formState:{errors}}=useForm();
 
+    const navigate=useNavigate();
     const onErrors= (data)=>{console.log(data)};
 
     const loginUser=async()=>{
@@ -20,7 +22,14 @@ function Login() {
 
           if(res.data.Success)
             {
-                toast.success(res.data.msg);
+                 toast.success(res.data.msg);
+                setloginData({email:"",password:""});
+
+                setTimeout(()=>{
+
+                    navigate("/booktable");
+                },1000);
+                
             }
             else{
 
@@ -51,12 +60,12 @@ function Login() {
                   
                 <tr>
                     <td className='p-3'><label htmlFor='email_inp' className='font-medium'>Email Id</label></td> 
-                    <td className='p-3'><input className='rounded-xl p-1 w-[400px] text-black' type="text" id="email_inp" name="email_inp" autoFocus  {...register('email_inp',{required:"Email is required."})} onChange={(e)=>{setloginData((prev)=>{return{...prev,email:e.target.value}})}} /><br/><small className='text-red-700'>{errors?.email_inp && errors.email_inp.message}</small></td>
+                    <td className='p-3'><input className='rounded-xl p-1 w-[400px] text-black' type="text" id="email_inp" name="email_inp" value={loginData.email} autoFocus  {...register('email_inp',{required:"Email is required."})} onChange={(e)=>{setloginData((prev)=>{return{...prev,email:e.target.value}})}} /><br/><small className='text-red-700'>{errors?.email_inp && errors.email_inp.message}</small></td>
                 </tr>
 
                 <tr >
                     <td className='p-3'><label htmlFor='pass_inp' className='font-medium'>Password</label></td>
-                    <td className='p-3'><input className='rounded-xl p-1 w-[400px] text-black' type="text" id="pass_inp" name="pass_inp" {...register('pass_inp',{required:"Password is required."})} onChange={(e)=>{setloginData((prev)=>{return{...prev,password:e.target.value}})}}  /><br/><small className='text-red-700'>{errors?.pass_inp && errors.pass_inp.message}</small></td>
+                    <td className='p-3'><input className='rounded-xl p-1 w-[400px] text-black' type="text" id="pass_inp" name="pass_inp" value={loginData.password} {...register('pass_inp',{required:"Password is required."})} onChange={(e)=>{setloginData((prev)=>{return{...prev,password:e.target.value}})}}  /><br/><small className='text-red-700'>{errors?.pass_inp && errors.pass_inp.message}</small></td>
                 </tr>
 
                 <tr>
