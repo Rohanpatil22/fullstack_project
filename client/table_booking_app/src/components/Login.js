@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import bgImg from '../images/bg_img_2.jpg'
 import axios from 'axios';
 import {useForm} from 'react-hook-form';
-import{toast,Toaster} from 'react-hot-toast'
+import{toast,Toaster} from 'react-hot-toast';
 import {useNavigate} from 'react-router-dom'
 
 function Login() {

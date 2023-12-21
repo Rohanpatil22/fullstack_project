@@ -18,7 +18,7 @@ const tableBookingSchema= new mongoose.Schema({
 
     bookingDate:{
 
-        type:Date
+        type:String
     }
 },{timestamps:true});
 

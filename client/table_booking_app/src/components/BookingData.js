@@ -8,7 +8,7 @@ import{toast,Toaster} from 'react-hot-toast';
 function BookingData(props) {
 
     const{register,handleSubmit,formState:{errors}}=useForm();
-    const[selDate,setSelDate]=useState(new Date());
+    const[selDate,setSelDate]=useState();
 
     const[bookingInfo,setBookingInfo]=useState({email:"",name:"",mobno:"",bookingdate:""});
 
@@ -72,7 +72,7 @@ function BookingData(props) {
 
        <div>
             <label for="date" class="block mb-2 text-xl font-medium text-gray-900 dark:text-white">Select Date</label>
-            <DatePicker className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[420px] p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" minDate={new Date(Date.now())} icon="fa fa-calendar"  id="date" name="date" dateFormat="dd-MM-yyyy" onChange={(date)=>{setBookingInfo((prev)=>{return{...prev,bookingdate:date}})}} selected={bookingInfo.bookingdate}/>
+            <DatePicker className="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[420px] p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" minDate={new Date(Date.now())} icon="fa fa-calendar"  id="date" name="date" dateFormat="dd/MM/yyyy" onChange={(date)=>{setBookingInfo((prev)=>{return{...prev,bookingdate:date}})}} selected={bookingInfo.bookingdate}/>
         </div>
 
         <div className='w-full m-auto text-center'> <button class="w-[300px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 m-auto" >Book your Table</button></div>
