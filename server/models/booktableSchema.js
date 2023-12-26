@@ -19,6 +19,11 @@ const tableBookingSchema= new mongoose.Schema({
     bookingDate:{
 
         type:String
+    },
+
+    tableName:{
+
+        type:String
     }
 },{timestamps:true});
 
