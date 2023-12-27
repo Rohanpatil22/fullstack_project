@@ -14,6 +14,7 @@ function Table() {
     const [showtable,setShowtable]=useState(false);
     const [filterDate,setfilterdate]=useState("");
     const [bookingData,setBookingDate]=useState("");
+    const[bookedtblarr,setbookedtblarr]=useState([]);
     
     
 
@@ -53,23 +54,44 @@ function Table() {
        
     }
 
+   
     const getbookedData=async()=>{
 
         console.log(filterDate);
         if(filterDate!="")
         {
-            axios.post("/getBookingData",{filterDate,selTable})
+            await axios.post("/getBookingData",{filterDate})
             .then((data)=>{
 
                 console.log(data);
-                setBookingDate(data.bookingInfo);
+                setBookingDate(data.data.bookingInfo);
+                setbookedtblarr([]);
+                 let temp=data.data.bookingInfo;
+               
+                for(let x=0;x<temp.length;x++)
+                {
+                    
+                    if(!(bookedtblarr.includes(temp[x].tableName)))
+                    {
+                       
+                       setbookedtblarr((prev)=>{return [...prev,temp[x].tableName]});
+                    }
+                }
+                
             })
-            setShowtable(!showtable);
+
+        
+            if(showtable==false)
+            {
+                setShowtable(true);
+            }
+            
         }
         else{
 
             toast.error("Please select date.");
         }
+       
        
 
        
@@ -114,10 +136,25 @@ function Table() {
             
             {showtable && <div className='grid grid-cols-5 gap-20 m-20 '  style={clickCheck ? {height:"800px",opacity:"0.3"} :{height:"800px"}}>
                  {
-                     tableName.map((item,index)=>(
-                         <div key={index} className='w-60 h-40 border-2 border-black font-bold text-3xl p-4 hover:bg-zinc-500 rounded-xl' onClick={()=>{setCheck();setSelTable(item)}}>{item}</div>
-                     ))
-                 }
+                     tableName.map((item,index)=>{
+
+                       
+                       // console.log(bookedtblarr);
+                        if(bookedtblarr.includes(item))
+                        {
+                            return <div key={index} className='w-90 h-40 border-2 border-black font-bold text-3xl p-4 rounded-xl bg-green-500'>{item}</div>;
+                        }
+                        else{
+
+                            
+                            return <div key={index} className='w-60 h-40 border-2 border-black font-bold text-3xl p-4 hover:bg-zinc-500 rounded-xl' onClick={()=>{setCheck();setSelTable(item)}}>{item}</div>;
+                        }
+                         
+    })
+                    
+                 
+               }
+                 
                   </div>
             }
 

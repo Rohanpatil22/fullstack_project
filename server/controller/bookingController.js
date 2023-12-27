@@ -47,7 +47,7 @@ export const booktable=async(req,res)=>{
 
  export const bookedData=async(req,res)=>{
 
-    const {filterDate,selTable}=req.body;
+    const {filterDate}=req.body;
 
     if(!filterDate)
     {
@@ -58,7 +58,7 @@ export const booktable=async(req,res)=>{
         })
     }
 
-    const getData= await BookingData.find({filterDate,tableName:selTable});
+    const getData= await BookingData.find({bookingDate:filterDate});
 
     return res.status(200).json({
         
