@@ -5,22 +5,26 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import{toast,Toaster} from 'react-hot-toast';
 import {Datepicker} from 'flowbite-react'
+import { useContext } from 'react';
+import { UserContext } from './Context.js';
 
 function BookingData(props) {
 
+    const {userData}= useContext(UserContext);
     const{register,handleSubmit,formState:{errors}}=useForm();
     const[selDate,setSelDate]=useState();
 
-    const[bookingInfo,setBookingInfo]=useState({email:"",name:"",mobno:"",bookingdate:"",tableName:props.table});
+    const[bookingInfo,setBookingInfo]=useState({email:"",name:"",mobno:"",bookingdate:"",tableName:props.table,userId:"A",userName:"B"});
 
     const onErros= data=>{console.log(data)};
 
     const bookTable=async()=>{
 
-       
-        console.log(bookingInfo);
+       console.log(userData);
+        // setBookingInfo((prev)=>{return{...prev,userId:userData.userId,userName:userData.userName}});
 
-         await axios.post("/booktable",bookingInfo)
+        console.log(bookingInfo);
+         await axios.post("/booktable",{bookingInfo,userData})
          .then((data)=>{
 
             console.log(data);

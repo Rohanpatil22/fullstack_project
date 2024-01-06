@@ -8,6 +8,7 @@ import {Datepicker} from 'flowbite-react'
 
 function Table() {
     
+   
     const [userAUth,setUserAuth]=useState(false);
     const [clickCheck,setClickCheck]=useState(false);
     const [selTable,setSelTable]=useState("");
@@ -142,7 +143,7 @@ function Table() {
                        // console.log(bookedtblarr);
                         if(bookedtblarr.includes(item))
                         {
-                            return <div key={index} className='w-90 h-40 border-2 border-black font-bold text-3xl p-4 rounded-xl bg-green-500'>{item}</div>;
+                            return <div key={index} className='w-60 h-40 border-2 border-black font-bold text-3xl p-4 rounded-xl bg-green-500'>{item}</div>;
                         }
                         else{
 

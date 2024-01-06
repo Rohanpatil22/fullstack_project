@@ -85,7 +85,8 @@ export const checkUser=async(req,res)=>{
 
             Success:true,
             token,
-            msg:"User Authentication Successful"
+            msg:"User Authentication Successful",
+            RegisterUser
         })
     }
 

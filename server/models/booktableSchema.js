@@ -24,6 +24,12 @@ const tableBookingSchema= new mongoose.Schema({
     tableName:{
 
         type:String
+    },
+    userId:{
+        type:String
+    },
+    userName:{
+        type:String
     }
 },{timestamps:true});
 

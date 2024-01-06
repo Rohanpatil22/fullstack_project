@@ -5,8 +5,9 @@ import BookingData from "../models/booktableSchema.js"
 
 export const booktable=async(req,res)=>{
 
-    const{name,email,mobno,bookingdate,tableName}=req.body;
-
+    const{name,email,mobno,bookingdate,tableName}=req.body.bookingInfo;
+    const{userId,userName}=req.body.userData;
+    
     if(!(name && email && mobno && bookingdate))
     {
         return res.status(400).json({
@@ -29,7 +30,8 @@ export const booktable=async(req,res)=>{
         })
     }
 
-    const book_table=await BookingData.create({email,name,mobno,bookingDate:bookingdate,tableName});
+    console.log(userId,userName);
+    const book_table=await BookingData.create({email,name,mobno,bookingDate:bookingdate,tableName,bookByUserId:userId,bookByUserName:userName});
 
     if(!book_table)
     {

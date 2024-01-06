@@ -3,10 +3,13 @@ import bgImg from '../images/bg_img_2.jpg'
 import axios from 'axios';
 import {useForm} from 'react-hook-form';
 import{toast,Toaster} from 'react-hot-toast';
-import {useNavigate} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom';
+import { useContext } from 'react';
+import { UserContext } from './Context';
 
 function Login() {
 
+    const {setUserData}=useContext(UserContext);
     const [loginData,setloginData]=useState({email:"",password:""});
     const{register,handleSubmit,formState:{errors}}=useForm();
 
@@ -23,6 +26,8 @@ function Login() {
           if(res.data.Success)
             {
                  toast.success(res.data.msg);
+
+                setUserData({userName:res.data.RegisterUser.email,userId:res.data.RegisterUser.name})
                 setloginData({email:"",password:""});
 
                 setTimeout(()=>{
