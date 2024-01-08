@@ -19,8 +19,8 @@ export const booktable=async(req,res)=>{
 
     const existingBooking= await BookingData.findOne({bookingDate:bookingdate,tableName});
 
-    console.log(tableName,bookingdate);
-    console.log(existingBooking);
+    // console.log(tableName,bookingdate);
+    // console.log(existingBooking);
     if(existingBooking)
     {
         return res.status(200).json({
@@ -31,7 +31,7 @@ export const booktable=async(req,res)=>{
     }
 
     console.log(userId,userName);
-    const book_table=await BookingData.create({email,name,mobno,bookingDate:bookingdate,tableName,bookByUserId:userId,bookByUserName:userName});
+    const book_table=await BookingData.create({email,name,mobno,bookingDate:bookingdate,tableName,userId,userName});
 
     if(!book_table)
     {

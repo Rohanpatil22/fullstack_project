@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import DatePicker from 'react-datepicker';
 // import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
@@ -14,9 +14,13 @@ function BookingData(props) {
     const{register,handleSubmit,formState:{errors}}=useForm();
     const[selDate,setSelDate]=useState();
 
-    const[bookingInfo,setBookingInfo]=useState({email:"",name:"",mobno:"",bookingdate:"",tableName:props.table,userId:"A",userName:"B"});
+    const[bookingInfo,setBookingInfo]=useState({email:"",name:"",mobno:"",bookingdate:"",tableName:props.table});
 
     const onErros= data=>{console.log(data)};
+
+    useEffect(()=>{
+        setBookingInfo((prev)=>{return{...prev,bookingdate:props.bookDate,tableName:props.table}});
+    },[props.bookDate,props.table]);
 
     const bookTable=async()=>{
 
@@ -86,8 +90,9 @@ function BookingData(props) {
         </div>
 
        <div>
-         <label for="bookdate" class="block mb-2 text-xl font-medium text-gray-900 text-white">Booking Date</label>
-           <Datepicker id="bookdate" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[420px] p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white pl-8" value={bookingInfo.bookingdate} placeholder='Select Date' onSelectedDateChanged={(date)=>{format_date(date)}} minDate={new Date()}/>
+         <label  class="block mb-2 text-xl font-medium text-gray-900 text-white">Booking Date</label>
+           {/* <Datepicker id="bookdate" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[420px] p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white pl-8" value={bookingInfo.bookingdate} placeholder='Select Date' onSelectedDateChanged={(date)=>{format_date(date)}} minDate={new Date()}/> */}
+           <input type='text' class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[420px] p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white pl-8" value={props.bookDate} readOnly/>
         </div>
 
         <div className='w-full m-auto text-center'> <button class="w-[300px] text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-5 py-2.5 text-center bg-blue-600 hover:bg-blue-700 focus:ring-blue-800 m-auto" >Book your Table</button></div>

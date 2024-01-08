@@ -167,7 +167,7 @@ function Table() {
            
 
             <div style={PopupStyle}>
-                 <BookingData setFun={setCheck} table={selTable}/>
+                 <BookingData setFun={setCheck} table={selTable} bookDate={filterDate}/>
              </div>
             
           
