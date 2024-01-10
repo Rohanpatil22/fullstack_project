@@ -6,11 +6,12 @@ import { useForm } from 'react-hook-form';
 import{toast,Toaster} from 'react-hot-toast';
 import {Datepicker} from 'flowbite-react'
 import { useContext } from 'react';
-import { UserContext } from './Context.js';
+import { UserContext,PopupContext } from './Context.js';
 
 function BookingData(props) {
 
     const {userData}= useContext(UserContext);
+    const {popup,setpopup}= useContext(PopupContext);
     const{register,handleSubmit,formState:{errors}}=useForm();
     const[selDate,setSelDate]=useState();
 
@@ -36,6 +37,13 @@ function BookingData(props) {
             if(data.data.success)
             {
                 toast.success("Table Booked successfully.");
+
+                setTimeout(()=>{
+                    setpopup(!popup);
+                },2000);
+              
+
+
             }
             else{
 

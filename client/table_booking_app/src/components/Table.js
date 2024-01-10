@@ -1,14 +1,15 @@
 
 import axios from 'axios';
-import {useState} from "react";
-import toast, { Toast,Toaster } from 'react-hot-toast';
+import {useContext, useEffect, useState} from "react";
+import toast, { Toaster } from 'react-hot-toast';
 import BookingData from './BookingData.js';
 import {Datepicker} from 'flowbite-react'
+import { PopupContext } from './Context.js';
 
 
 function Table() {
     
-   
+   const {popup,setpopup}=useContext(PopupContext);
     const [userAUth,setUserAuth]=useState(false);
     const [clickCheck,setClickCheck]=useState(false);
     const [selTable,setSelTable]=useState("");
@@ -21,7 +22,7 @@ function Table() {
 
     const PopupStyle={
 
-        display: clickCheck ? "block" : "none",
+        display: popup ? "block" : "none",
         position: "absolute",
         top:"30%",
         left:"40%",
@@ -51,16 +52,26 @@ function Table() {
     
     const setCheck=()=>{
 
-        setClickCheck(!clickCheck);
+        // setClickCheck(!clickCheck);
+        setpopup(!popup);
        
     }
 
-   
+   useEffect(()=>{
+
+    if(popup==false && filterDate!=="" )
+    {
+        getbookedData();
+    }
+  
+   },[popup])
+
     const getbookedData=async()=>{
 
         console.log(filterDate);
-        if(filterDate!="")
+        if(filterDate!=="")
         {
+            let bookedTableArr=[];
             await axios.post("/getBookingData",{filterDate})
             .then((data)=>{
 
@@ -72,11 +83,13 @@ function Table() {
                 for(let x=0;x<temp.length;x++)
                 {
                     
-                    if(!(bookedtblarr.includes(temp[x].tableName)))
+                    if(!(bookedTableArr.includes(temp[x].tableName)))
                     {
-                       
-                       setbookedtblarr((prev)=>{return [...prev,temp[x].tableName]});
+                        bookedTableArr.push(temp[x].tableName);
+                    //    setbookedtblarr((prev)=>{return [...prev,temp[x].tableName]});
                     }
+
+                    setbookedtblarr(bookedTableArr);
                 }
                 
             })
@@ -90,7 +103,12 @@ function Table() {
         }
         else{
 
-            toast.error("Please select date.");
+            
+            if(userAUth)
+            {
+                toast("Please select date.");
+            }
+           
         }
        
        
@@ -113,6 +131,7 @@ function Table() {
     {
         return (
             <>
+            <div>
               <Toaster toastOptions={{
                     className: '',
                     style: {
@@ -122,6 +141,7 @@ function Table() {
                     fontSize:"24px"
                     },
                 }}/>
+                </div>
             <div className="h-[1000px]">
             <div className='mt-8 mb-8 text-center w-full flex justify-center items-center'>
                 <div> <label for="bookdate" className='text-2xl font-bold mr-10'>Select Date :</label></div>
@@ -135,7 +155,7 @@ function Table() {
                 
             </div>
             
-            {showtable && <div className='grid grid-cols-5 gap-20 m-20 '  style={clickCheck ? {height:"800px",opacity:"0.3"} :{height:"800px"}}>
+            {showtable && <div className='grid grid-cols-5 gap-20 m-20 '  style={popup ? {height:"800px",opacity:"0.3"} :{height:"800px"}}>
                  {
                      tableName.map((item,index)=>{
 
