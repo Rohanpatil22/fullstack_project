@@ -68,7 +68,8 @@ function Signup() {
 
                     <tr>
                         <td className='p-3'><label htmlFor='password_inp' className='font-medium'>Password</label></td>
-                        <td className='p-3'><input className='rounded-xl p-1 w-[400px] text-black' type="password" id="password_inp" name="password_inp" {...register('password_inp',{required:"Password is required.",validate:{minLength: (v)=>v.length>=7 && v.length<=10,matchPattern:(v)=>/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/.test(v)}})} onChange={(e)=>{setUserdata((prev)=>{return {...prev,password:e.target.value}})}} value={userData.password} /><br/><small className='text-red-700'>{errors?.password_inp && errors.password_inp.message}</small></td>
+                        {/* <td className='p-3'><input className='rounded-xl p-1 w-[400px] text-black' type="password" id="password_inp" name="password_inp" {...register('password_inp',{required:"Password is required.",validate:{minLength: (v)=>v.length>=7 && v.length<=10,matchPattern:(v)=>/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/.test(v)}})} onChange={(e)=>{setUserdata((prev)=>{return {...prev,password:e.target.value}})}} value={userData.password} /><br/><small className='text-red-700'>{errors?.password_inp && errors.password_inp.message}</small></td> */}
+                        <td className='p-3'><input className='rounded-xl p-1 w-[400px] text-black' type="password" id="password_inp" name="password_inp" {...register('password_inp',{required:"Password is required.",validate:{minLength: (v)=>v.length>=7 && v.length<=10}})} onChange={(e)=>{setUserdata((prev)=>{return {...prev,password:e.target.value}})}} value={userData.password} /><br/><small className='text-red-700'>{errors?.password_inp && errors.password_inp.message}</small></td>
                     </tr>
 
                     <tr>

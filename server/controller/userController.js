@@ -3,6 +3,7 @@ import User from "../models/userSchema.js";
 import bcrypt from "bcryptjs"
 import { json } from "express";
 import jwt from "jsonwebtoken";
+import Sendmail from '../Nodemailer/SendEmail.js';
 
 
 
@@ -87,7 +88,17 @@ export const checkUser=async(req,res)=>{
             token,
             msg:"User Authentication Successful",
             RegisterUser
-        })
+        });
+
+        const mailInfo={
+           
+            from: '"<rohanpwinnernotes@gmail.com>', // sender address
+            to: RegisterUser.email, // list of receivers
+            subject: "=Login Info", // Subject line
+            text: "You have successfully logged in.", // plain text body
+            html: "<b>You have successfully logged in.</b>", // html body
+        }
+       await Sendmail(mailInfo);
     }
 
     else{
