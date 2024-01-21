@@ -12,7 +12,7 @@ function App() {
   const [popup,setpopup]=useState(false);
   return (
     <>
-    <div>
+    <div className="sm:overflow-hidden">
       <UserContext.Provider value={{userData,setUserData}}>
       <PopupContext.Provider value={{popup,setpopup}}>
       <Header/>

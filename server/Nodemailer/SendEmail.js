@@ -30,7 +30,7 @@ const SES_CONFIG={
     region: process.env.AWS_REGION,
 }
 
-console.log(SES_CONFIG);
+// console.log(SES_CONFIG);
 
 const AWS_SES = new AWS.SES(SES_CONFIG);
 
