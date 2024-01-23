@@ -8,6 +8,8 @@ import {Datepicker} from 'flowbite-react'
 import { useContext } from 'react';
 import { UserContext,PopupContext } from './Context.js';
 
+import {loadScript} from '../RazorpayLoader.js'
+
 function BookingData(props) {
 
     const {userData}= useContext(UserContext);
@@ -25,7 +27,7 @@ function BookingData(props) {
 
     const bookTable=async()=>{
 
-       console.log(userData);
+        console.log(userData);
         // setBookingInfo((prev)=>{return{...prev,userId:userData.userId,userName:userData.userName}});
 
         console.log(bookingInfo);
@@ -50,6 +52,58 @@ function BookingData(props) {
                 toast.error(data.data.msg);
             }
          })
+
+        const res = await loadScript(
+            "https://checkout.razorpay.com/v1/checkout.js"
+        );
+
+        console.log(res);
+        if (!res) {
+            alert("Razorpay SDK failed to load. Are you online?");
+            return;
+        }
+
+        const result = await axios.post("/payment");
+
+        const { amount, id: order_id, currency } = result.data;
+
+        const options = {
+            key: "rzp_test_r6FiJfddJh76SI", // Enter the Key ID generated from the Dashboard
+            amount: amount.toString(),
+            currency: currency,
+            name: "Soumya Corp.",
+            description: "Test Transaction",
+            image: {  },
+            order_id: order_id,
+            handler: async function (response) {
+                const data = {
+                    orderCreationId: order_id,
+                    razorpayPaymentId: response.razorpay_payment_id,
+                    razorpayOrderId: response.razorpay_order_id,
+                    razorpaySignature: response.razorpay_signature,
+                };
+
+                // const result = await axios.post("/payment", data);
+
+                // alert(result.data.msg);
+            },
+            prefill: {
+                name: "Soumya Dey",
+                email: "SoumyaDey@example.com",
+                contact: "9999999999",
+            },
+            notes: {
+                address: "Soumya Dey Corporate Office",
+            },
+            theme: {
+                color: "#61dafb",
+            },
+        };
+
+        const paymentObject = new window.Razorpay(options);
+        paymentObject.open();
+        
+      
     }
 
     const format_date=(val)=>{
