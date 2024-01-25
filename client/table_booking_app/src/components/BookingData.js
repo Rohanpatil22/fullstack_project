@@ -25,10 +25,8 @@ function BookingData(props) {
         setBookingInfo((prev)=>{return{...prev,bookingdate:props.bookDate,tableName:props.table}});
     },[props.bookDate,props.table]);
 
-    const bookTable=async()=>{
 
-        console.log(userData);
-        // setBookingInfo((prev)=>{return{...prev,userId:userData.userId,userName:userData.userName}});
+    const bookTable=async()=>{
 
         console.log(bookingInfo);
          await axios.post("/booktable",{bookingInfo,userData})
@@ -52,6 +50,34 @@ function BookingData(props) {
                 toast.error(data.data.msg);
             }
          })
+    }
+    const makePayment=async()=>{
+
+        console.log(userData);
+        // setBookingInfo((prev)=>{return{...prev,userId:userData.userId,userName:userData.userName}});
+
+        // console.log(bookingInfo);
+        //  await axios.post("/booktable",{bookingInfo,userData})
+        //  .then((data)=>{
+
+        //     console.log(data);
+
+        //     if(data.data.success)
+        //     {
+        //         toast.success("Table Booked successfully.");
+
+        //         setTimeout(()=>{
+        //             setpopup(!popup);
+        //         },2000);
+              
+
+
+        //     }
+        //     else{
+
+        //         toast.error(data.data.msg);
+        //     }
+        //  })
 
         const res = await loadScript(
             "https://checkout.razorpay.com/v1/checkout.js"
@@ -65,13 +91,13 @@ function BookingData(props) {
 
         const result = await axios.post("/payment");
 
-        const { amount, id: order_id, currency } = result.data;
+        const { amount, order_id, currency } = result.data;
 
         const options = {
-            key: "rzp_test_r6FiJfddJh76SI", // Enter the Key ID generated from the Dashboard
+            key: "rzp_test_TBQ5PsVya0EtLH", // Enter the Key ID generated from the Dashboard
             amount: amount.toString(),
             currency: currency,
-            name: "Soumya Corp.",
+            name: "Restaurant",
             description: "Test Transaction",
             image: {  },
             order_id: order_id,
@@ -83,13 +109,15 @@ function BookingData(props) {
                     razorpaySignature: response.razorpay_signature,
                 };
 
+                bookTable();
+
                 // const result = await axios.post("/payment", data);
 
                 // alert(result.data.msg);
             },
             prefill: {
-                name: "Soumya Dey",
-                email: "SoumyaDey@example.com",
+                name: "Rohan Patil",
+                email: "rohanpatil1797@gmail.com",
                 contact: "9999999999",
             },
             notes: {
@@ -134,7 +162,7 @@ function BookingData(props) {
   }}/></div>
 
     <div class="w-[500px] p-4 bg-slate-800 text-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 bg-gray-800 border-gray-700">
-    <form class="space-y-6" action="#" onSubmit={handleSubmit(bookTable,onErros)}>
+    <form class="space-y-6" action="#" onSubmit={handleSubmit(makePayment,onErros)}>
         <div class="text-right"><button class="bg-red-500 p-3 rounded-lg text-white w-[40px] font-bold text-xl" onClick={props.setFun}>X</button></div>
         <h5 class="text-2xl font-medium text-gray-900 text-white">Book {props.table} Table </h5>
         <div>
