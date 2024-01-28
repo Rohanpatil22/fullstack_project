@@ -142,20 +142,21 @@ function Table() {
                     },
                 }}/>
                 </div>
-            <div className="h-[1000px]">
-            <div className='mt-8 mb-8 text-center w-full flex justify-center items-center'>
-                <div> <label for="bookdate" className='text-2xl font-bold mr-10'>Select Date :</label></div>
+            <div className="md:h-[1000px] sm:h-[850px]">
+            <div className='mt-8 mb-8 p-2 text-center w-full flex md:justify-center sm:justify-around items-center'>
+                <div className='sm:hidden md:inline-block'> <label for="bookdate" className='md:text-2xl sm:text-lg font-bold md:mr-10 '>Select Date :</label></div>
                <div>
                    
-                    <Datepicker id="bookdate" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-[420px] p-2.5 bg-gray-600 border-gray-500 placeholder-gray-400 text-white pl-8" value={filterDate} placeholder='Select Date' onSelectedDateChanged={(date)=>{formarseldate(date)}} minDate={new Date()} />
+                    <Datepicker id="bookdate" class="bg-gray-50 border border-gray-300 text-gray-900 text-lg rounded-lg focus:ring-blue-500 focus:border-blue-500 block md:w-[420px] sm:w-[190px] md:p-2.5 sm:p-1 sm:pl-8 bg-gray-600 border-gray-500 placeholder-gray-400 text-white md:pl-8 sm:text-sm md:text-lg" value={filterDate} placeholder='Select Date' onSelectedDateChanged={(date)=>{formarseldate(date)}} minDate={new Date()} />
                </div>
                 <div>
-                    <button className='bg-sky-800 p-4 text-white rounded-lg w-48 hover:scale-110 cursor-pointer ml-8 font-bold' onClick={getbookedData}>Check Availabilty</button>
+                    <button className='bg-sky-800 md:p-4 sm:p-2 text-white rounded-lg md:w-48  sm:w-38 hover:scale-110 cursor-pointer md:ml-8 sm:ml-2 font-bold sm:text-xs md:text-lg' onClick={getbookedData}>Check Availabilty</button>
                 </div>
                 
             </div>
+            {/* <div className='md:hidden text-center'><button className='bg-sky-800 p-2 text-white rounded-lg  sm:w-40 hover:scale-110 cursor-pointer sm:ml-2 font-bold' onClick={getbookedData}>Check Availabilty</button></div> */}
             
-            {showtable && <div className='grid grid-cols-5 gap-20 m-20 '  style={popup ? {height:"800px",opacity:"0.3"} :{height:"800px"}}>
+            {showtable && <div className='grid sm:justify-items-center md:grid-cols-5 sm:grid-cols-2 md:gap-20 sm:gap-x-2 sm:gap-y-1 md:m-20 '  style={popup ? {height:"800px",opacity:"0.3"} :{height:"800px"}}>
                  {
                      tableName.map((item,index)=>{
 
@@ -163,12 +164,12 @@ function Table() {
                        // console.log(bookedtblarr);
                         if(bookedtblarr.includes(item))
                         {
-                            return <div key={index} className='w-60 h-40 border-2 border-black font-bold text-3xl p-4 rounded-xl bg-green-500'>{item}</div>;
+                            return <div key={index} className='md:w-60 md:h-40 sm:w-32 sm:h-20 border-2 border-black font-bold text-3xl p-4 rounded-xl bg-green-500'>{item}</div>;
                         }
                         else{
 
                             
-                            return <div key={index} className='w-60 h-40 border-2 border-black font-bold text-3xl p-4 hover:bg-zinc-500 rounded-xl' onClick={()=>{setCheck();setSelTable(item)}}>{item}</div>;
+                            return <div key={index} className='md:w-60 md:h-40 sm:w-32 sm:h-20 border-2 border-black font-bold md:text-3xl sm:text-xl md:p-4 hover:bg-zinc-500 rounded-xl' onClick={()=>{setCheck();setSelTable(item)}}>{item}</div>;
                         }
                          
     })

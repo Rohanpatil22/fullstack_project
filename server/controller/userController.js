@@ -98,15 +98,18 @@ export const checkUser=async(req,res)=>{
         //     text: "You have successfully logged in.", // plain text body
         //     html: "<b>You have successfully logged in.</b>", // html body
         // }
-       await sendmail(RegisterUser.email,RegisterUser.name);
+
+        let mail_msg="You have Successfully logged in."
+        let mail_sub="Succesful Login."
+       await sendmail(RegisterUser.email,RegisterUser.name,mail_msg,mail_sub);
     }
 
     else{
 
-        res.status(400).json({
+        res.status(200).json({
 
             Success:false,
-            msg:"Something went wrong"
+            msg:"Please check login credentials."
         })
     }
 }

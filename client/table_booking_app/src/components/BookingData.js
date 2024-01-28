@@ -121,7 +121,7 @@ function BookingData(props) {
                 contact: "9999999999",
             },
             notes: {
-                address: "Soumya Dey Corporate Office",
+                address: "Restaurant Office",
             },
             theme: {
                 color: "#61dafb",

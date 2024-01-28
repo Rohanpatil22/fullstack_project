@@ -70,7 +70,7 @@ function Login() {
 
                 <tr >
                     <td className='md:p-3 sm:p-1'><label htmlFor='pass_inp' className='font-medium md:text-2xl sm:text-lg'>Password</label></td>
-                    <td className='md:p-3 sm:p-1'><input className='rounded-xl p-1 md:p-1 sm:p-0 md:w-[400px] sm:w-[200px] text-black' type="text" id="pass_inp" name="pass_inp" value={loginData.password} {...register('pass_inp',{required:"Password is required."})} onChange={(e)=>{setloginData((prev)=>{return{...prev,password:e.target.value}})}}  /><br/><small className='text-red-700'>{errors?.pass_inp && errors.pass_inp.message}</small></td>
+                    <td className='md:p-3 sm:p-1'><input className='rounded-xl p-1 md:p-1 sm:p-0 md:w-[400px] sm:w-[200px] text-black' type="password" id="pass_inp" name="pass_inp" value={loginData.password} {...register('pass_inp',{required:"Password is required."})} onChange={(e)=>{setloginData((prev)=>{return{...prev,password:e.target.value}})}}  /><br/><small className='text-red-700'>{errors?.pass_inp && errors.pass_inp.message}</small></td>
                 </tr>
 
                 <tr>

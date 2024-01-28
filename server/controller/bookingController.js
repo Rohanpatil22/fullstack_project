@@ -10,7 +10,7 @@ export const booktable=async(req,res)=>{
     
     if(!(name && email && mobno && bookingdate))
     {
-        return res.status(400).json({
+        return res.status(200).json({
 
             success:false,
             msg:"All fields are mandatory."
