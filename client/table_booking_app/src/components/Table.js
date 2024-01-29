@@ -20,15 +20,15 @@ function Table() {
     
     
 
-    const PopupStyle={
+    // const PopupStyle={
 
-        display: popup ? "block" : "none",
-        position: "absolute",
-        top:"30%",
-        left:"40%",
-        zIndex:"10"
+    //     display: popup ? "block" : "none",
+    //     position: "absolute",
+    //     top:"30%",
+    //     left:"40%",
+    //     zIndex:"10"
 
-    }
+    // }
     const config={
         headers:{"Content-Type" : "application/json"},
         withCredentials:true
@@ -164,7 +164,7 @@ function Table() {
                        // console.log(bookedtblarr);
                         if(bookedtblarr.includes(item))
                         {
-                            return <div key={index} className='md:w-60 md:h-40 sm:w-32 sm:h-20 border-2 border-black font-bold text-3xl p-4 rounded-xl bg-green-500'>{item}</div>;
+                            return <div key={index} className='md:w-60 md:h-40 sm:w-32 sm:h-20 border-2 border-black font-bold md:text-3xl sm:text-xl md:p-4 rounded-xl bg-green-500'>{item}</div>;
                         }
                         else{
 
@@ -186,10 +186,11 @@ function Table() {
                  
                  
            
-
-            <div style={PopupStyle}>
+            
+            <div className={popup ? 'absolute block z-10 top-[30%] md:left-[40%] sm:left-[4%]':'absolute hidden z-10 top-[30%] md:left-[40%] sm:left-[10%]'}>
                  <BookingData setFun={setCheck} table={selTable} bookDate={filterDate}/>
              </div>
+      
             
           
             
@@ -208,7 +209,7 @@ function Table() {
                     fontSize:"24px"
                     },
                 }}/>
-                <div style={{fontWeight:"bold",fontSize:"30px"}}>Please login</div>
+                <div style={{fontWeight:"bold"}} className='md:text-4xl sm:text-lg'>Please login</div>
             </>
         )
     }
