@@ -41,6 +41,9 @@ function Login() {
                 toast.error(res.data.msg);
             }
        })
+       .catch(err=>{
+        toast.error(err.response.data.msg);
+       })
 
     }
   return (

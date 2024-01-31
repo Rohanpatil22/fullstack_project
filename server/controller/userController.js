@@ -33,7 +33,12 @@ export const CreateUser= async(req,res)=>{
 
     if(!newUser)
     {
-       throw Error("User not cretated.Something went wrong.");
+      // throw Error("User not cretated.Something went wrong.");
+      res.status(400).json({
+
+        success:false,
+        msg:"User not cretated.Something went wrong."
+      })
     }
     
     const token=jwt.sign(
@@ -106,7 +111,7 @@ export const checkUser=async(req,res)=>{
 
     else{
 
-        res.status(200).json({
+        res.status(400).json({
 
             Success:false,
             msg:"Please check login credentials."

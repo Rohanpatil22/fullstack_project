@@ -50,6 +50,11 @@ function BookingData(props) {
                 toast.error(data.data.msg);
             }
          })
+         .catch(err=>{
+
+            toast.error(err.response.data.msg);
+
+         })
     }
     const makePayment=async()=>{
 

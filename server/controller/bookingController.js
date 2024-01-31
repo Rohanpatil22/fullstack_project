@@ -1,6 +1,7 @@
 import mongoose, { get } from "mongoose";
 import { json } from "express";
-import BookingData from "../models/booktableSchema.js"
+import BookingData from "../models/booktableSchema.js";
+import sendmail from "../Nodemailer/SendEmail.js";
 
 
 export const booktable=async(req,res)=>{
@@ -35,15 +36,28 @@ export const booktable=async(req,res)=>{
 
     if(!book_table)
     {
-        throw Error("Something went wrong. Table not booked.");
+        // throw Error("Something went wrong. Table not booked.");
+
+       return res.status(400).json({
+
+            success:false,
+            msg:"Something went wrong. Table not booked.",
+            book_table
+        })
     }
 
+    
     res.status(200).json({
 
         success:true,
         msg:"Table Successfully booked for the selected date",
         book_table
     })
+
+    let mail_msg=`You have Successfully booked table ${book_table.tableName} for Date ${book_table.bookingDate}.`;
+    let mail_sub="Succesful Booking.";
+    await sendmail(book_table.email,book_table.name,mail_msg,mail_sub);
+   
 
 };
 
@@ -53,7 +67,7 @@ export const booktable=async(req,res)=>{
 
     if(!filterDate)
     {
-        return res.status(200).json({
+        return res.status(400).json({
 
             msg:"Date should not be blank.",
             success:false,
@@ -67,6 +81,9 @@ export const booktable=async(req,res)=>{
         success:true,
         bookingInfo:getData
     })
+
+
+   
 
 
  }

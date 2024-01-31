@@ -31,6 +31,10 @@ function Signup() {
         setUserdata({name:"",email:"",mobno:"",password:""});
            
         })
+        .catch(err=>{
+
+            toast.error(err.response.data.msg);
+        })
 
     }
   return (

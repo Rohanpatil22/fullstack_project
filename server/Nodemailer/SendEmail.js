@@ -27,7 +27,7 @@ const sendmail = async (recipientEmail, name, msg,mail_sub) => {
         Body: {
           Html: {
             Charset: 'UTF-8',
-            Data: `<h2>Hello, ${name} ${msg}</h2>`,
+            Data: `<h3>Hello, ${name} ${msg}</h3><div><h4>Thank You!!!</h4></div>`,
           },
           Text: {
             Charset: 'UTF-8',
