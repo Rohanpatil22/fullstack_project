@@ -72,8 +72,10 @@ function Table() {
         if(filterDate!=="")
         {
             let bookedTableArr=[];
-            await axios.post("/getBookingData",{filterDate})
-            .then((data)=>{
+
+        try{
+           let data= await axios.post("/getBookingData",{filterDate})
+           // .then((data)=>{
 
                 console.log(data);
                 setBookingDate(data.data.bookingInfo);
@@ -91,14 +93,25 @@ function Table() {
 
                     setbookedtblarr(bookedTableArr);
                 }
+
+                if(showtable==false)
+                {
+                    setShowtable(true);
+                }
                 
-            })
+          //  })
+            }
+
+            catch (err){
+
+                console.log(err);
+            }
 
         
-            if(showtable==false)
-            {
-                setShowtable(true);
-            }
+            // if(showtable==false)
+            // {
+            //     setShowtable(true);
+            // }
             
         }
         else{

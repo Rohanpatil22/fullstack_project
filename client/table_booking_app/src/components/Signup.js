@@ -16,8 +16,10 @@ function Signup() {
         // event.preventDefault();
         console.log(userData);
 
-        await axios.post("/createUser",userData)
-        .then((res)=>{
+        try{
+        
+            let res=await axios.post("/createUser",userData)
+             //  .then((res)=>{
 
             if(res.data.newUser)
             {
@@ -30,11 +32,15 @@ function Signup() {
 
         setUserdata({name:"",email:"",mobno:"",password:""});
            
-        })
-        .catch(err=>{
+      //  })
+       // .catch(err=>{
+        }
+       catch(err){
 
-            toast.error(err.response.data.msg);
-        })
+        toast.error(err.response.data.msg);
+       }
+            
+       // })
 
     }
   return (

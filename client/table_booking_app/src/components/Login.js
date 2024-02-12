@@ -18,8 +18,9 @@ function Login() {
 
     const loginUser=async()=>{
 
-       await axios.post("/login",loginData)
-       .then((res)=>{
+        try{
+           let res=  await axios.post("/login",loginData)
+            // .then((res)=>{
 
           console.log(res);
 
@@ -40,10 +41,15 @@ function Login() {
 
                 toast.error(res.data.msg);
             }
-       })
-       .catch(err=>{
-        toast.error(err.response.data.msg);
-       })
+        }
+      // })
+      // .catch(err=>{
+        catch(err){
+
+            toast.error(err.response.data.msg);
+        }
+       
+      // })
 
     }
   return (

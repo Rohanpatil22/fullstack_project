@@ -29,8 +29,10 @@ function BookingData(props) {
     const bookTable=async()=>{
 
         console.log(bookingInfo);
-         await axios.post("/booktable",{bookingInfo,userData})
-         .then((data)=>{
+
+        try{
+        let data= await axios.post("/booktable",{bookingInfo,userData})
+        // .then((data)=>{
 
             console.log(data);
 
@@ -49,12 +51,17 @@ function BookingData(props) {
 
                 toast.error(data.data.msg);
             }
-         })
-         .catch(err=>{
+        // })
+        }
+        //.catch(err=>{
+
+        catch (err){
 
             toast.error(err.response.data.msg);
+        }
+           
 
-         })
+       //  })
     }
     const makePayment=async()=>{
 
