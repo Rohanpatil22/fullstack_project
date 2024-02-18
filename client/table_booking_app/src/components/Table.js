@@ -36,8 +36,11 @@ function Table() {
     
    const getUserAuth=(async()=>{
 
-        await axios.get("/getData",config)
-         .then((res)=>{
+    try{
+       
+       let res= await axios.post("/getdata",config)
+        
+         //.then((res)=>{
 
             console.log(res);
             setUserAuth(res.data.success);
@@ -46,7 +49,13 @@ function Table() {
             {
                 toast.error("Please login to book the table.");
             }
-        });
+      //  });
+        }
+        catch(err)
+        {
+            console.log(err);
+
+        }
         
     })();
     
