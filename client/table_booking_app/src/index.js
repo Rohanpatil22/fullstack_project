@@ -12,7 +12,7 @@ import Login from './components/Login';
 import Table from './components/Table';
 import axios from 'axios';
 
-axios.defaults.baseURL="https://restaurant-booking-app.onrender.com";
+axios.defaults.baseURL="https://restaurant-booking-app.onrender.com/api/v1";
 
 const route=createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<App/>}>
