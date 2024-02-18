@@ -2,7 +2,7 @@
   "name": "table_booking_app",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://restaurant-booking-app.onrender.com",
+  "proxy": "https://restaurant-booking-app.onrender.com/api/v1",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
