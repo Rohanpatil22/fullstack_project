@@ -10,8 +10,9 @@ import Contact from './components/Contact';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Table from './components/Table';
+import axios from 'axios';
 
-
+axios.defaults.baseURL="https://restaurant-booking-app.onrender.com";
 
 const route=createBrowserRouter(createRoutesFromElements(
   <Route path="/" element={<App/>}>
