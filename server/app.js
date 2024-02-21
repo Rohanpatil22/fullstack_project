@@ -13,7 +13,7 @@ const app=express();
 app.use(express.json());
 app.use(Cors(
     {
-        origin:"https://restaurant-booking-app.onrender.com",
+        origin:"https://65d61b10a53d28ca0d78c173--effervescent-cascaron-d4b467.netlify.app",
         credentials:true
     }
 ));
