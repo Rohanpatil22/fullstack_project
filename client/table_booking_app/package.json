@@ -2,9 +2,7 @@
   "name": "table_booking_app",
   "version": "0.1.0",
   "private": true,
-  "proxy": {
-    "https://65d61fc956c7dbcfa947230e--effervescent-cascaron-d4b467.netlify.app/api/v1":"https://restaurant-booking-app.onrender.com/api/v1"
-  },
+  "proxy": "https://restaurant-booking-app.onrender.com/api/v1",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
