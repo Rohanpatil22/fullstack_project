@@ -2,7 +2,7 @@ import express, { json } from "express";
 import dotenv from "dotenv";
 import router from "./routes/routes.js";
 import cookieParser from "cookie-parser";
-
+import cors from "cors";
 
 
 dotenv.config();
@@ -10,6 +10,7 @@ dotenv.config();
 
 const app=express();
 
+app.use(cors());
 app.use(express.json());
 
 
