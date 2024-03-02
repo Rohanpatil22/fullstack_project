@@ -93,7 +93,7 @@ export const checkUser=async(req,res)=>{
 
       
         // res.cookie("jwttoken",token,options);
-         res.status(200).cookie("jwttoken",token,options).json({
+        await res.status(200).cookie("jwttoken",token,options).json({
         //  res.status(200).json({
 
             Success:true,
