@@ -23,6 +23,13 @@ app.get("/",(req,res)=>{
 })
 
 app.use("/api/v1",router);
+
+app.use("*",(req,res)=>{
+    res.status(200).json({
+
+        msg:"Different route path"
+    })
+})
 app.listen(PORT,()=>{
 
     console.log("Your app is working fine");
