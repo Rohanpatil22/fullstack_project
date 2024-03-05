@@ -64,8 +64,10 @@ export const checkUser=async(req,res)=>{
 
     const{email,password}=req.body;
 
+    console.log(email,password);
     if(!(email && password))
     {
+        console.log("inside if statement");
         return res.status(400).json({
 
             msg:"All fields are mandatory."
@@ -74,6 +76,7 @@ export const checkUser=async(req,res)=>{
 
     const RegisterUser= await User.findOne({email});
 
+    console.log(RegisterUser);
     if(RegisterUser && await bcrypt.compare(password,RegisterUser.password))
     {
         const token=jwt.sign(
@@ -91,9 +94,9 @@ export const checkUser=async(req,res)=>{
           
         }
 
-      
+        console.log(token);
         // res.cookie("jwttoken",token,options);
-        await res.status(200).cookie("jwttoken",token,options).json({
+         res.status(200).cookie("jwttoken",token,options).json({
         //  res.status(200).json({
 
             Success:true,
