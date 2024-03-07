@@ -16,10 +16,14 @@ function Login() {
     const navigate=useNavigate();
     const onErrors= (data)=>{console.log(data)};
 
+    const config={
+      headers:{"Content-Type" : "application/json"},
+      withCredentials:true
+  }
     const loginUser=async()=>{
 
         try{
-           let res=  await axios.post("/login",loginData)
+           let res=  await axios.post("/login",loginData,config)
             // .then((res)=>{
 
           console.log(res);

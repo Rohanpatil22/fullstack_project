@@ -11,6 +11,11 @@ function Signup() {
 
     const onErros= data=>{console.log(data)};
     // const onSubmit= data =>{console.log(data)};
+    const config={
+        headers:{"Content-Type" : "application/json"},
+        withCredentials:true
+    }
+
     const getformData=async (event)=>{
 
         // event.preventDefault();
@@ -18,7 +23,7 @@ function Signup() {
 
         try{
         
-            let res=await axios.post("/createUser",userData)
+            let res=await axios.post("/createUser",userData,config)
              //  .then((res)=>{
 
             if(res.data.newUser)
