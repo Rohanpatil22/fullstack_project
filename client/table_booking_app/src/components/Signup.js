@@ -12,8 +12,9 @@ function Signup() {
     const onErros= data=>{console.log(data)};
     // const onSubmit= data =>{console.log(data)};
     const config={
+        withCredentials:true,
         headers:{ 'Access-Control-Allow-Origin': '*',"Content-Type" : "application/json"},
-        withCredentials:true
+       
     }
 
     const getformData=async (event)=>{
