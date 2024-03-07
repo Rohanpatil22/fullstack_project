@@ -12,7 +12,7 @@ function Signup() {
     const onErros= data=>{console.log(data)};
     // const onSubmit= data =>{console.log(data)};
     const config={
-        headers:{"Content-Type" : "application/json"},
+        headers:{ 'Access-Control-Allow-Origin': '*',"Content-Type" : "application/json"},
         withCredentials:true
     }
 

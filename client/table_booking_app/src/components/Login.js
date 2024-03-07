@@ -17,7 +17,7 @@ function Login() {
     const onErrors= (data)=>{console.log(data)};
 
     const config={
-      headers:{"Content-Type" : "application/json"},
+      headers:{ 'Access-Control-Allow-Origin': '*',"Content-Type" : "application/json"},
       withCredentials:true
   }
     const loginUser=async()=>{
