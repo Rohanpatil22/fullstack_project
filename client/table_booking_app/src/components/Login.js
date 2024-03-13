@@ -9,6 +9,7 @@ import { UserContext } from './Context';
 
 function Login() {
 
+
     const {setUserData}=useContext(UserContext);
     const [loginData,setloginData]=useState({email:"",password:""});
     const{register,handleSubmit,formState:{errors}}=useForm();
@@ -18,7 +19,7 @@ function Login() {
 
     const config={
       withCredentials:true,
-      headers:{ 'Access-Control-Allow-Origin': '*',"Content-Type" : "application/json"},
+      
       
   }
     const loginUser=async()=>{

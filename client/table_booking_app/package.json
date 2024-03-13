@@ -35,8 +35,6 @@
     "eject": "react-scripts eject"
   },
   
-  "proxy": "https://restaurant-booking-app.onrender.com/api/v1",
-  
   "eslintConfig": {
     "extends": [
       "react-app",
