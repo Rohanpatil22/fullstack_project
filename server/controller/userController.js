@@ -90,7 +90,8 @@ export const checkUser=async(req,res)=>{
             httpOnly:true,
             secure:true,      // comment for developement env
             // secure:false,  //uncomment for developement env
-            // sameSite:"lax",
+            // sameSite:"lax", //uncomment for developement env
+            sameSite:"None", // comment for developement env
             // domain:".localhost"
            
           
