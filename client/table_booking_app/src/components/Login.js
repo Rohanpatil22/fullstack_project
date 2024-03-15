@@ -17,15 +17,15 @@ function Login() {
     const navigate=useNavigate();
     const onErrors= (data)=>{console.log(data)};
 
-    const config={
-      withCredentials:true,
+  //   const config={
+  //     withCredentials:true,
       
       
-  }
+  // }
     const loginUser=async()=>{
 
         try{
-           let res=  await axios.post("/login",loginData,config)
+           let res=  await axios.post("/login",loginData)
             // .then((res)=>{
 
           console.log(res);

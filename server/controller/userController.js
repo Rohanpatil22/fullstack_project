@@ -88,8 +88,10 @@ export const checkUser=async(req,res)=>{
         const options={
             expires:new Date(Date.now()+ 10*60*1000),
             httpOnly:true,
-            // sameSite: "none",
-            // secure:true
+            secure:true,      // comment for developement env
+            // secure:false,  //uncomment for developement env
+            // sameSite:"lax",
+            // domain:".localhost"
            
           
         }

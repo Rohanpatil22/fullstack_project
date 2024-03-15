@@ -29,16 +29,18 @@ function Table() {
     //     zIndex:"10"
 
     // }
-    const config={
+    // const config={
 
-        withCredentials:true
-    }
+    //     withCredentials:true,
+    //     credentials: 'include',
+
+    // }
     
    const getUserAuth=(async()=>{
 
     try{
        
-       let res= await axios.post("/getdata",config)
+       let res= await axios.post("/getdata")
         
          //.then((res)=>{
 

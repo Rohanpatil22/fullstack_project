@@ -11,11 +11,11 @@ function Signup() {
 
     const onErros= data=>{console.log(data)};
     // const onSubmit= data =>{console.log(data)};
-    const config={
-        withCredentials:true,
-        headers:{ 'Access-Control-Allow-Origin': '*',"Content-Type" : "application/json"},
+    // const config={
+    //     withCredentials:true,
+    //     headers:{ 'Access-Control-Allow-Origin': '*',"Content-Type" : "application/json"},
        
-    }
+    // }
 
     const getformData=async (event)=>{
 
@@ -24,7 +24,7 @@ function Signup() {
 
         try{
         
-            let res=await axios.post("/createUser",userData,config)
+            let res=await axios.post("/createUser",userData)
              //  .then((res)=>{
 
             if(res.data.newUser)
