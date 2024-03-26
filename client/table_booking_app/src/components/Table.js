@@ -1,10 +1,13 @@
 
 import axios from 'axios';
 import {useContext, useEffect, useState} from "react";
-import toast, { Toaster } from 'react-hot-toast';
+// import toast, { Toaster } from 'react-hot-toast';
 import BookingData from './BookingData.js';
 import {Datepicker} from 'flowbite-react'
 import { PopupContext } from './Context.js';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function Table() {
@@ -35,7 +38,7 @@ function Table() {
     //     credentials: 'include',
 
     // }
-    
+
    const getUserAuth=(async()=>{
 
     try{
@@ -49,7 +52,9 @@ function Table() {
 
             if(!userAUth)
             {
-                toast.error("Please login to book the table.");
+                console.log("alert render");
+                // notify("error","Please login to book the table.");
+                 toast.error("Please login to book the table.");
             }
       //  });
         }
@@ -130,7 +135,7 @@ function Table() {
             
             if(userAUth)
             {
-                toast("Please select date.");
+                toast.warning("Please Select Date.");
             }
            
         }
@@ -156,7 +161,7 @@ function Table() {
         return (
             <>
             <div>
-              <Toaster toastOptions={{
+              {/* <Toaster toastOptions={{
                     className: '',
                     style: {
                     border: '1px solid #713200',
@@ -164,7 +169,9 @@ function Table() {
                     color: '#713200',
                     fontSize:"24px"
                     },
-                }}/>
+                }}/> */}
+
+           
                 </div>
             <div className="md:h-[1000px] sm:h-[850px]">
             <div className='mt-8 mb-8 p-2 text-center w-full flex md:justify-center sm:justify-around items-center'>
@@ -216,7 +223,20 @@ function Table() {
              </div>
       
             
-          
+             <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+
+                style={{ fontSize: "24px" , width:"500px",height:"60px" }}
+            />
             
             </>
            )
@@ -224,7 +244,7 @@ function Table() {
     else{
         return(
             <>
-                <Toaster toastOptions={{
+                {/* <Toaster toastOptions={{
                     className: '',
                     style: {
                     border: '1px solid #713200',
@@ -232,8 +252,23 @@ function Table() {
                     color: '#713200',
                     fontSize:"24px"
                     },
-                }}/>
-                <div style={{fontWeight:"bold"}} className='md:text-4xl sm:text-lg'>Please login</div>
+                }}/> */}
+                <div style={{fontWeight:"bold"}} className='md:text-4xl sm:text-lg h-[1000px]'>Please login</div>
+
+                <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+
+                style={{ fontSize: "24px" , width:"500px",height:"60px" }}
+            />
             </>
         )
     }

@@ -3,12 +3,16 @@ import React, { useEffect, useState } from 'react';
 // import "react-datepicker/dist/react-datepicker.css";
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
-import{toast,Toaster} from 'react-hot-toast';
+// import{toast,Toaster} from 'react-hot-toast';
 import {Datepicker} from 'flowbite-react'
 import { useContext } from 'react';
 import { UserContext,PopupContext } from './Context.js';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import {loadScript} from '../RazorpayLoader.js'
+
 
 function BookingData(props) {
 
@@ -41,7 +45,11 @@ function BookingData(props) {
                 toast.success("Table Booked successfully.");
 
                 setTimeout(()=>{
+
+                    console.log(popup);
                     setpopup(!popup);
+
+                        
                 },2000);
               
 
@@ -157,10 +165,13 @@ function BookingData(props) {
         setBookingInfo((prev)=>{return{...prev,bookingdate:formated_date,tableName:props.table}})
     }
 
+   
+    if(popup)
+    {
   return (
     <>
 
-<div>
+{/* <div>
         <Toaster  
          toastOptions={{
          className: '',
@@ -171,7 +182,7 @@ function BookingData(props) {
          fontSize:"22px",
       
      },
-  }}/></div>
+  }}/></div> */}
     
     <div class="md:w-[500px] sm:w-full  md:p-4 bg-slate-800 text-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 bg-gray-800 border-gray-700">
     <form class="space-y-6" action="#" onSubmit={handleSubmit(makePayment,onErros)}>
@@ -203,9 +214,23 @@ function BookingData(props) {
     </form>
 </div>
     
-    
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+
+                style={{ fontSize: "24px" , width:"500px",height:"60px" }}
+          />
     </>
   )
+}
 }
 
 export default BookingData;

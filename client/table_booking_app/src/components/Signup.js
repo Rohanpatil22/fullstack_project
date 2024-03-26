@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import bgImg from '../images/bg_img_2.jpg';
 import axios from "axios";
-import  { toast,Toaster } from "react-hot-toast";
-import {useForm} from 'react-hook-form'
+// import  { toast,Toaster } from "react-hot-toast";
+import {useForm} from 'react-hook-form';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Signup() {
 
@@ -51,7 +54,7 @@ function Signup() {
     }
   return (
     <>
-    <div>
+    {/* <div>
         <Toaster  
          toastOptions={{
          className: '',
@@ -61,7 +64,7 @@ function Signup() {
          color: '#713200',
          fontSize:"24px"
      },
-  }}/></div>
+  }}/></div> */}
     <div className="mx-auto md:pt-40 sm:pt-10 w-full md:h-[1400px] sm:h-[570px]" style={{backgroundImage:`url(${bgImg})`,width:"100%",backgroundSize:"cover",backgroundRepeat:"no-repeat"}}>
         <div className='md:w-2/5 sm:w-[90%] mx-auto bg-stone-400 md:p-20 sm:p-4 rounded-3xl' >
             <form onSubmit={handleSubmit(getformData,onErros)}>
@@ -105,6 +108,20 @@ function Signup() {
         </div>
     </div>
     
+             <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+
+                style={{ fontSize: "24px" , width:"500px",height:"60px" }}
+            />
     </>
   )
 }

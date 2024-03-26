@@ -89,8 +89,8 @@ export const checkUser=async(req,res)=>{
             expires:new Date(Date.now()+ 10*60*1000),
             httpOnly:true,
             secure:true,      // comment for developement env
-            // secure:false,  //uncomment for developement env
-            // sameSite:"lax", //uncomment for developement env
+            //secure:false,  //uncomment for developement env
+            //sameSite:"lax", //uncomment for developement env
             sameSite:"None", // comment for developement env
             // domain:".localhost"
            

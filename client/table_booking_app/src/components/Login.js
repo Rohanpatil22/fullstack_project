@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import bgImg from '../images/bg_img_2.jpg'
 import axios from 'axios';
 import {useForm} from 'react-hook-form';
-import{toast,Toaster} from 'react-hot-toast';
+// import{toast,Toaster} from 'react-hot-toast';
 import {useNavigate} from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from './Context';
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
 
@@ -22,6 +25,8 @@ function Login() {
       
       
   // }
+
+
     const loginUser=async()=>{
 
         try{
@@ -46,6 +51,7 @@ function Login() {
             else{
 
                 toast.error(res.data.msg);
+               
             }
         }
       // })
@@ -53,6 +59,7 @@ function Login() {
         catch(err){
 
             toast.error(err.response.data.msg);
+           
         }
        
       // })
@@ -60,7 +67,7 @@ function Login() {
     }
   return (
     <>
-    <div>
+    {/* <div>
         <Toaster  
          toastOptions={{
          className: '',
@@ -71,7 +78,7 @@ function Login() {
          fontSize:"22px",
       
      },
-  }}/></div>
+  }}/></div> */}
     <div className="mx-auto md:pt-40 sm:pt-10 w-full md:h-[1400px] sm:h-[570px]" style={{backgroundImage:`url(${bgImg})`,width:"100%",backgroundSize:"cover",backgroundRepeat:"no-repeat"}}>
     <div className='md:w-2/5 sm:w-[90%] mx-auto bg-stone-400 md:p-20 sm:p-4 rounded-3xl' >
         <form onSubmit={handleSubmit(loginUser,onErrors)}>
@@ -104,6 +111,21 @@ function Login() {
 
     </div>
 </div>
+
+         <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+
+                style={{ fontSize: "24px" , width:"500px",height:"60px" }}
+          />
 </>
   )
 }
