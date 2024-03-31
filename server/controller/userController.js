@@ -108,14 +108,7 @@ export const checkUser=async(req,res)=>{
             RegisterUser
         });
 
-        // const mailInfo={
-           
-        //     from: '"<rohanpwinnernotes@gmail.com>', // sender address
-        //     to: RegisterUser.email, // list of receivers
-        //     subject: "=Login Info", // Subject line
-        //     text: "You have successfully logged in.", // plain text body
-        //     html: "<b>You have successfully logged in.</b>", // html body
-        // }
+       
 
         let mail_msg="You have Successfully logged in."
         let mail_sub="Succesful Login."
@@ -133,9 +126,6 @@ export const checkUser=async(req,res)=>{
 }
 
 export const ShowData= async(req,res)=>{
-
-    // console.log(req.cookies.jwttoken);
-
    
         res.status(200).json({
 

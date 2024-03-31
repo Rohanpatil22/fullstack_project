@@ -12,6 +12,8 @@ function Signup() {
     const{register,handleSubmit,formState:{errors}}=useForm();
     const [userData,setUserdata]=useState({name:"",email:"",mobno:"",password:""});
 
+    const[loader,setLoader]=useState(false);
+
     const onErros= data=>{console.log(data)};
     // const onSubmit= data =>{console.log(data)};
     // const config={
@@ -23,6 +25,9 @@ function Signup() {
     const getformData=async (event)=>{
 
         // event.preventDefault();
+
+        setLoader(true);
+
         console.log(userData);
 
         try{
@@ -40,6 +45,8 @@ function Signup() {
             }
 
         setUserdata({name:"",email:"",mobno:"",password:""});
+
+        setLoader(false);
            
       //  })
        // .catch(err=>{
@@ -47,6 +54,7 @@ function Signup() {
        catch(err){
 
         toast.error(err.response.data.msg);
+        setLoader(false);
        }
             
        // })
@@ -107,6 +115,15 @@ function Signup() {
             </form>
         </div>
     </div>
+
+          {<div className={loader ? 'absolute top-[0px] md:h-[1600px] sm:h-[750px] w-full block opacity-70 bg-gray-400 flex gap-4  justify-center items-center' : 'hidden'} >
+
+              <div
+                  class="inline-block z-10 md:h-20 sm:h-12 md:w-20 sm:w-12 animate-spin rounded-full border-8 border-solid border-current border-e-transparent align-[-0.125em] text-info motion-reduce:animate-[spin_1.5s_linear_infinite]"
+                  role="status">
+              </div>
+
+          </div>}
     
              <ToastContainer
                 position="top-center"

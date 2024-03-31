@@ -17,6 +17,8 @@ function Login() {
     const [loginData,setloginData]=useState({email:"",password:""});
     const{register,handleSubmit,formState:{errors}}=useForm();
 
+    const[loader,setLoader]=useState(false);
+
     const navigate=useNavigate();
     const onErrors= (data)=>{console.log(data)};
 
@@ -29,6 +31,7 @@ function Login() {
 
     const loginUser=async()=>{
 
+       setLoader(true);
         try{
            let res=  await axios.post("/login",loginData)
             // .then((res)=>{
@@ -53,12 +56,20 @@ function Login() {
                 toast.error(res.data.msg);
                
             }
+
+            // setTimeout(() => {
+            //   setLoader(false);
+            // },1000);
+
+            setLoader(false);
+           
         }
       // })
       // .catch(err=>{
         catch(err){
 
             toast.error(err.response.data.msg);
+            setLoader(false);
            
         }
        
@@ -102,15 +113,19 @@ function Login() {
             </tbody>
            </table>
            </form>
-          
-
-           
-                
-           
-
 
     </div>
 </div>
+
+{ <div className={loader ? 'absolute top-[0px] md:h-[1600px] sm:h-[750px] w-full block opacity-70 bg-gray-400 flex gap-4  justify-center items-center' : 'hidden'} >
+
+
+<div
+  class="inline-block z-10 md:h-20 sm:h-12 md:w-20 sm:w-12 animate-spin rounded-full border-8 border-solid border-current border-e-transparent align-[-0.125em] text-info motion-reduce:animate-[spin_1.5s_linear_infinite]"
+  role="status">
+</div>
+
+</div>}
 
          <ToastContainer
                 position="top-center"
