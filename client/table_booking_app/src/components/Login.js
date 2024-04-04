@@ -22,19 +22,13 @@ function Login() {
     const navigate=useNavigate();
     const onErrors= (data)=>{console.log(data)};
 
-  //   const config={
-  //     withCredentials:true,
-      
-      
-  // }
-
 
     const loginUser=async()=>{
 
        setLoader(true);
         try{
            let res=  await axios.post("/login",loginData)
-            // .then((res)=>{
+           
 
           console.log(res);
 
@@ -57,15 +51,11 @@ function Login() {
                
             }
 
-            // setTimeout(() => {
-            //   setLoader(false);
-            // },1000);
 
             setLoader(false);
            
         }
-      // })
-      // .catch(err=>{
+     
         catch(err){
 
             toast.error(err.response.data.msg);
@@ -73,41 +63,30 @@ function Login() {
            
         }
        
-      // })
+      
 
     }
   return (
     <>
-    {/* <div>
-        <Toaster  
-         toastOptions={{
-         className: '',
-         style: {
-         border: '1px solid #713200',
-         padding: '20px',
-         color: '#713200',
-         fontSize:"22px",
-      
-     },
-  }}/></div> */}
-    <div className="mx-auto md:pt-40 sm:pt-10 w-full md:h-[1400px] sm:h-[570px]" style={{backgroundImage:`url(${bgImg})`,width:"100%",backgroundSize:"cover",backgroundRepeat:"no-repeat"}}>
-    <div className='md:w-2/5 sm:w-[90%] mx-auto bg-stone-400 md:p-20 sm:p-4 rounded-3xl' >
+    
+    <div className="mx-auto md:pt-24 sm:pt-10 w-full md:h-[1400px] sm:h-[570px]" style={{backgroundImage:`url(${bgImg})`,width:"100%",backgroundSize:"cover",backgroundRepeat:"no-repeat"}}>
+    <div className='md:w-[45%] sm:w-[90%] mx-auto bg-stone-400 md:p-14 sm:p-4 rounded-3xl' >
         <form onSubmit={handleSubmit(loginUser,onErrors)}>
            <table className='text-2xl m-auto'>
             <tbody>
                   
                 <tr>
-                    <td className='md:p-3 sm:p-1'><label htmlFor='email_inp' className='font-medium md:text-2xl sm:text-lg'>Email Id</label></td> 
-                    <td className='md:p-3 sm:p-1'><input className='rounded-xl p-1 md:p-1 sm:p-0 md:w-[400px] sm:w-[200px] text-black' type="text" id="email_inp" name="email_inp" value={loginData.email} autoFocus  {...register('email_inp',{required:"Email is required."})} onChange={(e)=>{setloginData((prev)=>{return{...prev,email:e.target.value}})}} /><br/><small className='text-red-700'>{errors?.email_inp && errors.email_inp.message}</small></td>
+                    <td className='md:p-3 sm:p-1'><label htmlFor='email_inp' className='font-medium md:text-xl sm:text-lg'>Email Id</label></td> 
+                    <td className='md:p-3 sm:p-1'><input className='rounded-xl p-1 md:p-1 sm:p-0 md:w-[400px] sm:w-[200px] text-black md:text-sm' type="text" id="email_inp" name="email_inp" value={loginData.email} autoFocus  {...register('email_inp',{required:"Email is required."})} onChange={(e)=>{setloginData((prev)=>{return{...prev,email:e.target.value}})}} /><br/><small className='text-red-700'>{errors?.email_inp && errors.email_inp.message}</small></td>
                 </tr>
 
                 <tr >
-                    <td className='md:p-3 sm:p-1'><label htmlFor='pass_inp' className='font-medium md:text-2xl sm:text-lg'>Password</label></td>
-                    <td className='md:p-3 sm:p-1'><input className='rounded-xl p-1 md:p-1 sm:p-0 md:w-[400px] sm:w-[200px] text-black' type="password" id="pass_inp" name="pass_inp" value={loginData.password} {...register('pass_inp',{required:"Password is required."})} onChange={(e)=>{setloginData((prev)=>{return{...prev,password:e.target.value}})}}  /><br/><small className='text-red-700'>{errors?.pass_inp && errors.pass_inp.message}</small></td>
+                    <td className='md:p-3 sm:p-1'><label htmlFor='pass_inp' className='font-medium md:text-xl sm:text-lg'>Password</label></td>
+                    <td className='md:p-3 sm:p-1'><input className='rounded-xl p-1 md:p-1 sm:p-0 md:w-[400px] sm:w-[200px] text-black md:text-sm' type="password" id="pass_inp" name="pass_inp" value={loginData.password} {...register('pass_inp',{required:"Password is required."})} onChange={(e)=>{setloginData((prev)=>{return{...prev,password:e.target.value}})}}  /><br/><small className='text-red-700'>{errors?.pass_inp && errors.pass_inp.message}</small></td>
                 </tr>
 
                 <tr>
-                    <td className='md:p-3 sm:pt-4 md:pt-10 text-center' colSpan={2}><button className='md:p-3 sm:p-1 md:w-40 sm:w-28 bg-blue-900 md:rounded-xl sm:rounded-lg text-white font-medium hover:scale-110 cursot-pointer mr-2 md:text-2xl sm:text-lg' type="reset">Reset</button><button className='md:p-3 sm:p-1 md:w-40 sm:w-28 ml-3 bg-teal-800 text-white font-medium md:rounded-xl sm:rounded-lg hover:scale-110 cursot-pointer  md:text-2xl sm:text-lg' >Submit</button></td>
+                    <td className='md:p-3 sm:pt-4 md:pt-10 text-center' colSpan={2}><button className='md:p-2 sm:p-1 md:w-40 sm:w-28 bg-blue-900 md:rounded-xl sm:rounded-lg text-white font-medium hover:scale-110 cursot-pointer mr-2 md:text-xl sm:text-lg' type="reset" onClick={()=>{setloginData({email:"",password:""})}}>Reset</button><button className='md:p-2 sm:p-1 md:w-40 sm:w-28 ml-3 bg-teal-800 text-white font-medium md:rounded-xl sm:rounded-lg hover:scale-110 cursot-pointer  md:text-xl sm:text-lg' >Submit</button></td>
                     
                 </tr>
             </tbody>
@@ -139,7 +118,8 @@ function Login() {
                 pauseOnHover
                 theme="dark"
 
-                style={{ fontSize: "24px" , width:"500px",height:"60px" }}
+                className={'md:text-[17px] md:w-[700px] md:h-[60px] sm:text-[15px] sm:w-[450px] sm:h-[40px]'}
+                // style={{ fontSize: "24px" , width:"500px",height:"60px" }}
           />
 </>
   )
